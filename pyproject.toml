@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "edtech-teacher-segmentation"
+version = "0.1.0"
+description = "Unsupervised clustering and profiling of teachers based on EdTech platform logs."
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Ядро для расчета продуктовых метрик (MAU, активные дни) и кластеризации
+dependencies = [
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "scikit-learn==1.9.1",
+    "polars>=1.0.0",       # Для быстрой агрегации миллионов строк логов в профили пользователей
+    "scipy>=1.14.0",       # Для расчета матриц расстояний и силуэтов кластеров
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "ruff>=0.6.0",
+    "pre-commit>=3.8.0",
+]
+# Инструменты для EDA, отрисовки дендрограмм и профилей получившихся сегментов
+notebook = [
+    "jupyterlab>=4.2.0",
+    "matplotlib==3.11.2",
+    "seaborn==0.13.2",
+    "plotly>=5.20.0",     # Идеально для радарных диаграмм (Radar Charts), описывающих каждый сегмент
+    "ipywidgets>=8.1.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+minversion = "8.3"
+addopts = "-ra -q"
+testpaths = ["tests"]
