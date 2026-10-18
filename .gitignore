@@ -1,0 +1,7 @@
+data/
+.venv/
+__pycache__/
+*.py[cod]
+experiments/*.parquet
+processed_metadata/
+.ipynb_checkpoints/
